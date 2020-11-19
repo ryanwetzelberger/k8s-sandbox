@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo -i
 apt-get update && apt-get upgrade -y
 
 apt-get install -y docker.io
@@ -23,3 +24,23 @@ echo ipaddr >> /etc/hosts
 # doing this maintains the certificates when changes in the env happens, like adding a lb
 
 kubeadm init --config=kubeadm-config.yaml --upload-certs | tee kubeadm-init.out
+
+# run as non-root user
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u)::$(id -g) $HOME/.kube/config
+
+sudo cp /root/calico.yaml .
+kubectl apply -f calico.yaml
+
+source <(kubectl completion bash)
+echo "source <(kubectl completion bash)" >> $HOME/.bashrc
+
+# by default, master node cannot schedule non-infrastructure pods
+# to check, run this command: `kubectl describe node | grep -i taint`
+
+# if you want to change this behavior, run the lines below
+kubectl taint nodes \ --all node-role.kubernetes.io/master-
+
+
