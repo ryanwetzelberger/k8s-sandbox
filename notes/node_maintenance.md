@@ -16,4 +16,29 @@ ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt \
 ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key \
 etcdctl endpoint health"`
 
+To get the number of endpoints, you can run 
+`etcdctl --endpoints=https://127.0.0.1:2379 \
+-w table endpoint status --cluster`
 
+save snapshot by running this command:
+`etcdctl --endpoints=https://127.0.0.1:2379 \ 
+snapshot save /var/lib/etcd/snapshot.db`
+
+might consider cronjob to take routine snapshots of etcd.
+
+I like this:
+`snapshot.db-$(date +%m-%d-%y)`
+
+To update cluster drain work off of a node.  Run:
+`kubectl drain master --ignore-daemonsets`
+
+Use upgrade plan to check clsuter before upgrading:
+`sudo kubeadm upgrade plan`
+
+Then upgrade:
+`sudo kubeadm upgrade apply <version>`
+
+Check to see if other components like CNI's need updating.  After upgrading k8s, upgrade kubelet and kubectl to the same version of k8s.  After all upgrades, make master available for scheduling:
+`kubectl uncordon k8smaster`
+
+Then update all workers.
