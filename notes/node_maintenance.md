@@ -42,3 +42,14 @@ Check to see if other components like CNI's need updating.  After upgrading k8s,
 `kubectl uncordon k8smaster`
 
 Then update all workers.
+
+## Working with Resource Limits
+
+a container to stress environments: `vish/stress`
+
+Container might have issues though.  Getting errors.  Can view them by running: 
+`kubctl logs <pod-name>`
+
+### Namespace Resource Limits
+
+
