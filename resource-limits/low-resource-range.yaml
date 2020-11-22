@@ -6,7 +6,7 @@ spec:
     limits:
     - default:
         cpu: 1
-        memory: 500 Mi
+        memory: 500Mi
       defaultRequest:
         cpu: 0.5
         memory: 100Mi
