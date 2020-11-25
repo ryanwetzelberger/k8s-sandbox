@@ -52,3 +52,7 @@ Features enabled by default.  Expect bugs and issues as limited testing has been
 ### Stable
 
 denoted by integer.  Production ready.
+
+## API Calls
+
+strace can be used to explore interactions with API's.
