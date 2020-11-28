@@ -11,6 +11,8 @@ Multiple readers would use NFS or iSCSI.
 
 rbd for block storage or CephFS and GlusterFS would be great for multiple writers.
 
+Volumes cannot be nested.  Must have a mount point.
+
 ## Persistent Volumes and Claims
 
 Persistent Volume (PV) is a storage abstraction.  PV claims (PVC) are what Pods use to request PV's.
@@ -48,3 +50,11 @@ Can populate volumes from ConfigMaps.
 ConfigMaps must exist before pod unless optional.  
 
 In configuration, use valueFrom and configMapKeyRef values to use configMaps.
+
+ConfigMaps can receive data through: 
+
+- A literal value.
+- from a file.
+- from a directory of files.
+
+
