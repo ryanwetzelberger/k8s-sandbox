@@ -17,3 +17,13 @@ Some Service types:
 ## DNS
 
 DNS is defaulting in most deployment methods to CoreDNS.  this is referenced in the container spec by *kube-dns*.
+
+Edits to CoreDNS configMap for redirects:
+`rewrite stop {
+          name regex (.*)\.test\.io {1}.default.svc.cluster.local
+          answer name (.*)\.default\.svc\.cluster\.local {1}.test.io
+          }`
+
+In order for the config maps to update for the container, we needed to delete the pod.  Might resolve over time?  Need to test it at some point.
+
+
