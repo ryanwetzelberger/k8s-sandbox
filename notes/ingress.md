@@ -6,14 +6,20 @@ Difference between services and ingresses: efficiency.  Allows for centralizatio
 
 Some popular ingress controllers are:
 
-- Nginx
+- nginx
 - GKE
 - Traefik
 - Contour
 - Envoy
 
+nginx and GCE are officially supported controllers, Traefik is easy to install.
+
 Ingress API control through:
 `kubectl * ingress`
+
+Grab labels with a little color:
+`kubectl get deployments secondapp -o yaml | grep ' labels' -A2`
+
 
 ## Google Load Balancer Controller (GLBC)
 
