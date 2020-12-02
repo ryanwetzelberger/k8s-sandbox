@@ -56,3 +56,19 @@ denoted by integer.  Production ready.
 ## API Calls
 
 strace can be used to explore interactions with API's.
+
+Flow of request:
+
+- Authentication through one or more of any (tls certs, token, username and password, clear)
+- Authorization through policies
+- Admission Controllers can still deny based on policy.  Example would be Resource Quotas.
+
+## Network Polices
+
+Considered mature now.  Dependent on the CNI plugin.  Not all CNI's support network policies.  For example, today flannel doesn't.  
+
+## TLS Auth
+
+One can find the certificates that kubelet uses by checking status through systemd, and pulling the configuration for kubelet.
+
+Component authentication is done with tokens, stored in k8s secrets.
