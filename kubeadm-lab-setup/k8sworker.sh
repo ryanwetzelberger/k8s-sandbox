@@ -7,11 +7,11 @@ apt-get install -y docker.io
 
 echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list
 
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg apt-key | add -
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 apt-get update
 
-apt-get install -y kubeadm kubelet kubectl
+apt-get install -y kubeadm=1.19.0-00 kubelet=1.19.0-00 kubectl=1.19.0-00
 
 # get the ip address from the master, add ip address and k8smaster to /etc/hosts
 # get the k8s token from the master: `sudo kubeadm token list`
