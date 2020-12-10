@@ -3,6 +3,11 @@
 sudo -i
 apt-get update && apt-get upgrade -y
 
+# for raspberry pi's with ubuntu 20.  This needs to be appended to the file.  need to work that logic out
+#echo 'cgroup_enable=memory cgroup_memory=1' >> /boot/firmware/cmdline.txt
+
+reboot
+
 apt-get install -y docker.io
 
 echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list
