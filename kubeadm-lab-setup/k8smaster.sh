@@ -34,7 +34,7 @@ kubeadm init --config=kubeadm-config.yaml --upload-certs | tee kubeadm-init.out
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
-sudo chown $(id -u)::$(id -g) $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 sudo cp /root/calico.yaml .
 kubectl apply -f calico.yaml
